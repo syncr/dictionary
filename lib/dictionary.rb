@@ -13,6 +13,14 @@ class Term
   def save
     @@dictionary[@word] = @definition
   end
+
+  def word
+    @word
+  end
+
+  def definition
+    @definition
+  end
 end
 
 
