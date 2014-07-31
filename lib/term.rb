@@ -1,5 +1,10 @@
 class Term
-  @@dictionary = {}
+
+  @@dictionary = []
+  def Term.clear
+    @@dictionary = []
+  end
+
   def initialize(word, definition)
     @word = word
     @definition = definition
@@ -11,7 +16,7 @@ class Term
   end
 
   def save
-    @@dictionary[@word] = @definition
+    @@dictionary << self
   end
 
   def word

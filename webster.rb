@@ -1,4 +1,5 @@
-require './lib/dictionary'
+require './lib/term'
+require 'pry'
 
 def webster
   loop do
@@ -12,7 +13,7 @@ def webster
     if user_input == 'c'
       create_word
     elsif user_input == 'l'
-      list_word
+      list_words
     elsif user_input == 'x'
       puts 'Come back any time!'
       exit
@@ -26,7 +27,15 @@ def create_word
   puts "Wonderful! What is the definition of this word?"
   user_definition = gets.chomp
   new_word = Term.new(user_word, user_definition)
-  new_word.save
+end
+
+def list_words
+  puts "Great! Here are the words in our Emporium."
+  Term.dictionary.each do |word|
+    puts "#{word.word}: #{word.definition}"
+  end
+  puts "\n\n"
+  webster
 end
 
   # list words
