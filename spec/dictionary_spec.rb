@@ -22,6 +22,11 @@ describe Term do
     expect(test_word.definition).to eq 'a glorified swing'
   end
 
+  it "will set a new definition for a chosen word" do
+    test_word = Term.new("trapeze", "a glorified swing")
+    expect(test_word.set_definition("fancy swing")).to eq("fancy swing")
+  end
+
   describe '.clear' do
     it 'empties out all of the saved words' do
       Term.new("trapeze", "a glorified swing").save

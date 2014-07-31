@@ -26,6 +26,10 @@ class Term
   def definition
     @definition
   end
+
+  def set_definition(new_definition)
+    @definition = new_definition
+  end
 end
 
 

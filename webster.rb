@@ -2,6 +2,7 @@ require './lib/term'
 require 'pry'
 
 @current_word
+@found_word
 
 def webster
   loop do
@@ -48,7 +49,6 @@ end
 
 def search
   Term.dictionary.each do |instance|
-    # binding.pry
     if @current_word != instance.word
       next
     elsif @current_word == instance.word
@@ -66,21 +66,24 @@ end
 
 def menu_options
   puts "If you would like to delete this word, type 'd'."
-  puts "If you would like to edit this word, type 'e'."
+  puts "If you would like to view this word's definition, type 'v'."
+  puts "If you would like to edit this word's definition, type 'e'."
   puts "-or- if you'd like to exit, type 'x' to return to the start."
 
   user_input = gets.chomp
 
   if user_input == 'd'
     delete_word
+  elsif user_input == 'v'
+    view_definition
   elsif user_input == 'e'
-    edit_word
+    edit_definition
   elsif user_input == 'x'
     webster
   end
 end
 
-def get_definition
+def view_definition
   Term.dictionary.each do |instance|
     if @current_word == instance.word
       puts "The definition of #{instance.word} is #{instance.definition}"
@@ -104,5 +107,12 @@ def delete_word
     delete_word
   end
 end
-  # edit word definition
+
+def edit_definition
+  puts "What would you like the new definition of #{@found_word.word} to be?"
+  new_definition = gets.chomp
+  @found_word.set_definition(new_definition)
+
+end
+
 webster
